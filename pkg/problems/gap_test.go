@@ -28,6 +28,10 @@ func TestFindMaxBinaryGap(t *testing.T) {
 
 	assert.Equal(t, uint32(5), Solution(1041))
 
+	assert.Equal(t, uint32(11), Solution(4097))
+
+	assert.Equal(t, uint32(6), Solution(8321))
+
 	assert.Equal(t, uint32(6), Solution(265126))
 
 	assert.Equal(t, uint32(2), Solution(2147483547))
