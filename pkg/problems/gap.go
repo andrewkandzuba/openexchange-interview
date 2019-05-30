@@ -21,19 +21,20 @@ func Solution(n uint32) uint32 {
 //
 ////////////////////////////////////////////////////////////////////////////////
 func binaryGap(n uint32) uint32 {
-
+	// divide by 2 to effectively shift right till the least significant digit is 1 ie. an odd number
 	for n >= 1 && n%2 == 0 {
 		n /= 2
 	}
 
-	var ls uint32 = 0
-	var maxLs uint32 = 0
-
+	var ls uint32 = 0 //current longest sequence of zeros
+	var maxLs uint32 = 0 //max longest sequence of zeros
+	
+	//shift right and record / store the longest sequence (of zeros)
 	for n, r := divide(n); n >= 1; n, r = divide(n) {
 		if r == 0 {
-			ls += 1
+			ls += 1 //increment local sequence of zeros
 		} else {
-			maxLs = max(maxLs, ls)
+			maxLs = max(maxLs, ls) //compare to identify largest sequence
 			ls = 0
 		}
 	}
@@ -41,6 +42,7 @@ func binaryGap(n uint32) uint32 {
 	return max(maxLs, ls)
 }
 
+// find max of 2 numbers
 func max(x, y uint32) uint32 {
 	if x < y {
 		return y
@@ -48,6 +50,7 @@ func max(x, y uint32) uint32 {
 	return x
 }
 
+// shift right by dividing by 2 and return result and remainder
 func divide(n uint32) (uint32, uint32) {
 	return n / 2, n % 2
 }
